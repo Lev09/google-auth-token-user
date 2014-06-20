@@ -1,0 +1,11 @@
+{
+	"name": "token_user",
+	"descripton": "",
+	"version": "0.0.1",
+	"private": "true",
+	"dependencies": {
+		"googleapis": "*",
+		"zmq": "onicollet/zmq",
+		"optimist": "*"
+	}
+}
