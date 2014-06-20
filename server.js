@@ -5,22 +5,13 @@ var argv = require('optimist').default({
 }).argv
 
 var responder = zmq.socket('asyncrep');
-responder.bind(argv.bind, function(error) {
-	if(error) {
-		console.log(error);
-	}
-	console.log("binding on : ", argv.bind);
-});
+responder.bind(argv.bind);
+console.log("binding on : ", argv.bind);
 
 responder.on('message', function(message, response) {
 	var tokens = JSON.parse(message.toString());
 	console.log("Requester sends: ", tokens);
 	getUserData(tokens, function(userData) {
-		if (error) {
-			response.send("error");
-		}
-		else {
-			response.send(null, JSON.stringify(userData));
-		}
+		response.send(JSON.stringify(userData));
 	});
 });
